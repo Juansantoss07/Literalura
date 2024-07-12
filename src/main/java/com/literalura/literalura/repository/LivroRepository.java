@@ -17,4 +17,7 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
             "AND (a.anoFalecimento IS NULL OR a.anoFalecimento >= :anoNascimento)")  // Autor não faleceu ou faleceu após ou no ano de nascimento mínimo do intervalo
     List<Autor> encontrarAutoresVivosPorAno(Integer anoNascimento, Integer anoFalecimento);
 
+    @Query("SELECT l FROM Livro l WHERE l.idioma ILIKE :idioma")
+    List<Livro> encontrarLivrosPorIdioma(String idioma);
+
 }

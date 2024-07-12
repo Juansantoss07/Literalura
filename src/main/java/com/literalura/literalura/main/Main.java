@@ -4,7 +4,6 @@ import com.literalura.literalura.models.*;
 import com.literalura.literalura.repository.LivroRepository;
 import com.literalura.literalura.service.ConsumoAPI;
 import com.literalura.literalura.service.ConverteDados;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Scanner;
@@ -55,6 +54,9 @@ public class Main {
                 case 4:
                     listarAutoresVivosPorAno();
                     break;
+                case 5:
+                    listarLivrosEmUmIdioma();
+                    break;
             }
         }
     }
@@ -68,7 +70,7 @@ public class Main {
         DadosAutor dadoAutor = dadoLivro.autores().get(0);
 
         Autor autor = new Autor(dadoAutor.nome(), dadoAutor.anoNascimento(), dadoAutor.anoFalecimento());
-        Livro livro = new Livro(dadoLivro.titulo(), dadoLivro.numeroDownloads(), dadoLivro.idiomas(), autor);
+        Livro livro = new Livro(dadoLivro.titulo(), dadoLivro.numeroDownloads(), dadoLivro.idiomas().get(0), autor);
 
         repositorio.save(livro);
 
@@ -94,5 +96,21 @@ public class Main {
         leitura.nextLine();
         List<Autor> autoresVivos = repositorio.encontrarAutoresVivosPorAno(anoInicio, anoFinal);
         autoresVivos.forEach(System.out::println);
+    }
+
+    private void listarLivrosEmUmIdioma(){
+        System.out.println(""" 
+                        Insira o idioma para realizar a busca:
+                        es - espanhol
+                        en - inglês
+                        fr - francês
+                        pt - português
+                """
+        );
+
+        var idioma = leitura.nextLine();
+
+        List<Livro> livrosPorIdioma = repositorio.encontrarLivrosPorIdioma(idioma);
+        livrosPorIdioma.forEach(System.out::println);
     }
 }

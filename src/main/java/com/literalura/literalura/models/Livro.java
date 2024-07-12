@@ -2,9 +2,6 @@ package com.literalura.literalura.models;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-import java.util.Objects;
-
 @Entity
 @Table(name = "livros")
 public class Livro {
@@ -14,25 +11,25 @@ public class Livro {
     @JoinColumn(unique = true)
     private String titulo;
     private Integer downloads;
-    private List<String> idiomas;
+    private String idioma;
     @ManyToOne(cascade = CascadeType.ALL)
     private Autor autor;
 
     public Livro(){}
 
-    public Livro(String titulo, Integer downloads, List<String> idiomas, Autor autor) {
+    public Livro(String titulo, Integer downloads, String idioma, Autor autor) {
         this.titulo = titulo;
         this.downloads = downloads;
-        this.idiomas = idiomas;
+        this.idioma = idioma;
         this.autor = autor;
     }
 
-    public List<String> getIdiomas() {
-        return idiomas;
+    public String getIdioma() {
+        return idioma;
     }
 
-    public void setIdiomas(List<String> idiomas) {
-        this.idiomas = idiomas;
+    public void setIdioma(String idioma) {
+        this.idioma = idioma;
     }
 
     public String getTitulo() {
@@ -58,7 +55,7 @@ public class Livro {
                 "---------- LIVRO ----------" + "\n" +
                 "Titulo Do livro: " + titulo + "\n" +
                 "Downloads: " + downloads + "\n" +
-                "Idiomas: " + idiomas + "\n" +
+                "Idioma: " + idioma + "\n" +
                 "Autor: " + autor  +
                 "--------------------------" + "\n";
     }
