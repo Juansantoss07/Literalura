@@ -59,7 +59,7 @@ public class Livro {
                 "Titulo Do livro: " + titulo + "\n" +
                 "Downloads: " + downloads + "\n" +
                 "Idiomas: " + idiomas + "\n" +
-                "Autor: " + autor  + "\n" +
-                "--------------------------";
+                "Autor: " + autor  +
+                "--------------------------" + "\n";
     }
 }

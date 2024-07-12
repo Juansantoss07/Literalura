@@ -49,6 +49,9 @@ public class Main {
                 case 2:
                     listarLivrosRegistrados();
                     break;
+                case 3:
+                    listarAutoresRegistrados();
+                    break;
             }
         }
     }
@@ -71,6 +74,11 @@ public class Main {
 
     private void listarLivrosRegistrados(){
         List<Livro> livros = repositorio.findAll();
-        System.out.println(livros);
+        livros.forEach(System.out::println);
+    }
+
+    private void listarAutoresRegistrados(){
+        List<Autor> autores = repositorio.findDistinctAutores();
+        autores.forEach(System.out::println);
     }
 }
