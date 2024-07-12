@@ -11,4 +11,10 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
 
     @Query("SELECT DISTINCT l.autor FROM Livro l")
     List<Autor> findDistinctAutores();
+
+    @Query("SELECT a FROM Autor a " +
+            "WHERE a.anoNascimento <= :anoFalecimento " +  // Autor nasceu antes ou no ano de falecimento máximo do intervalo
+            "AND (a.anoFalecimento IS NULL OR a.anoFalecimento >= :anoNascimento)")  // Autor não faleceu ou faleceu após ou no ano de nascimento mínimo do intervalo
+    List<Autor> encontrarAutoresVivosPorAno(Integer anoNascimento, Integer anoFalecimento);
+
 }

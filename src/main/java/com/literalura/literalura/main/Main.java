@@ -52,6 +52,9 @@ public class Main {
                 case 3:
                     listarAutoresRegistrados();
                     break;
+                case 4:
+                    listarAutoresVivosPorAno();
+                    break;
             }
         }
     }
@@ -80,5 +83,16 @@ public class Main {
     private void listarAutoresRegistrados(){
         List<Autor> autores = repositorio.findDistinctAutores();
         autores.forEach(System.out::println);
+    }
+
+    private void listarAutoresVivosPorAno(){
+        System.out.println("Digite o primeiro ano que deseja pesquisar (A partir de):");
+        var anoInicio = leitura.nextInt();
+        leitura.nextLine();
+        System.out.println("Agora, digite o último ano (até):");
+        var anoFinal = leitura.nextInt();
+        leitura.nextLine();
+        List<Autor> autoresVivos = repositorio.encontrarAutoresVivosPorAno(anoInicio, anoFinal);
+        autoresVivos.forEach(System.out::println);
     }
 }
