@@ -18,6 +18,7 @@ public class Livro {
     @ManyToOne(cascade = CascadeType.ALL)
     private Autor autor;
 
+    public Livro(){}
 
     public Livro(String titulo, Integer downloads, List<String> idiomas, Autor autor) {
         this.titulo = titulo;
@@ -53,8 +54,12 @@ public class Livro {
 
     @Override
     public String toString() {
-        return "Titulo Do livro: " + titulo + "\n" +
+        return
+                "---------- LIVRO ----------" + "\n" +
+                "Titulo Do livro: " + titulo + "\n" +
                 "Downloads: " + downloads + "\n" +
-                "Idiomas: " + idiomas;
+                "Idiomas: " + idiomas + "\n" +
+                "Autor: " + autor  + "\n" +
+                "--------------------------";
     }
 }

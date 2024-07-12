@@ -6,6 +6,7 @@ import com.literalura.literalura.service.ConsumoAPI;
 import com.literalura.literalura.service.ConverteDados;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -45,6 +46,9 @@ public class Main {
                 case 1:
                     buscarLivrosPeloTitulo();
                     break;
+                case 2:
+                    listarLivrosRegistrados();
+                    break;
             }
         }
     }
@@ -65,4 +69,8 @@ public class Main {
         System.out.println("o Livro " + livro.getTitulo() + " foi registrado no banco com suas informações.");
     }
 
+    private void listarLivrosRegistrados(){
+        List<Livro> livros = repositorio.findAll();
+        System.out.println(livros);
+    }
 }

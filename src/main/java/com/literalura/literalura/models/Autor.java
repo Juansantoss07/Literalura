@@ -13,6 +13,8 @@ public class Autor {
     private Integer anoNascimento;
     private Integer anoFalecimento;
 
+    public Autor(){}
+
     public Autor(String nome, Integer anoNascimento, Integer anoFalecimento) {
         this.nome = nome;
         this.anoNascimento = anoNascimento;
@@ -41,5 +43,12 @@ public class Autor {
 
     public void setAnoFalecimento(Integer anoFalecimento) {
         this.anoFalecimento = anoFalecimento;
+    }
+
+    @Override
+    public String toString() {
+        return  nome + '\n' +
+                "Ano de falecimento: " + anoFalecimento + '\n' +
+                "Ano de nascimento: " + anoNascimento + '\n';
     }
 }
